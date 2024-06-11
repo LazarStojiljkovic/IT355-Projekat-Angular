@@ -1,0 +1,49 @@
+<div class="container mt-3">
+    <h2>Dodaj novi Film</h2>
+    <form [formGroup]="createFilmForm" (ngSubmit)="onSubmit()">
+      <div class="form-group">
+        <label for="ime">Ime</label>
+        <input id="ime" formControlName="ime" class="form-control" type="text">
+        <div *ngIf="imeError" class="alert alert-danger mt-2">{{ imeError }}</div>
+      </div>
+      <div class="form-group">
+        <label for="zanar">Žanr</label>
+        <select id="zanar" formControlName="zanar" class="form-control">
+          <option value="DRAMA">Drama</option>
+          <option value="HOROR">Horor</option>
+          <option value="KOMEDIJA">Komedija</option>
+          <option value="AKCIJA">Akcija</option>
+          <option value="NAUCNA FANTASTIKA">Naučna fantastika</option>
+          <option value="AVANTURA">Avantura</option>
+          <option value="TRILER">Triler</option>
+        </select>
+        <div *ngIf="zanarError" class="alert alert-danger mt-2">{{ zanarError }}</div>
+      </div>
+      <div class="form-group">
+        <label for="godinaObjavljivanja">Godina objavljivanja</label>
+        <input id="godinaObjavljivanja" formControlName="godinaObjavljivanja" class="form-control" type="number">
+        <div *ngIf="godinaError" class="alert alert-danger mt-2">{{ godinaError }}</div>
+      </div>
+      <div class="form-group">
+        <label for="trajanje">Trajanje</label>
+        <input id="trajanje" formControlName="trajanje" class="form-control" type="number">
+        <div *ngIf="trajanjeError" class="alert alert-danger mt-2">{{ trajanjeError }}</div>
+      </div>
+      <div class="form-group">
+        <label for="slika">Slika (URL)</label>
+        <input id="slika" formControlName="slika" class="form-control" type="url">
+        <div *ngIf="slikaError" class="alert alert-danger mt-2">{{ slikaError }}</div>
+      </div>
+      <div class="form-group">
+        <label for="direktor">Direktor</label>
+        <select id="direktor" formControlName="direktor" class="form-control">
+          <option *ngFor="let direktor of direktori" [value]="direktor.id">{{ direktor.ime }}</option>
+        </select>
+        <div *ngIf="direktorError" class="alert alert-danger mt-2">{{ direktorError }}</div>
+      </div>
+      <br>
+      <button class="btn btn-primary" type="submit">Dodaj film</button>
+      <div *ngIf="successMessage" class="alert alert-success mt-3">{{ successMessage }}</div>
+      <div *ngIf="errorMessage" class="alert alert-danger mt-3">{{ errorMessage }}</div>
+    </form>
+  </div>

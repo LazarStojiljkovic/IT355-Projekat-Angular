@@ -1,0 +1,16 @@
+<div class="container mt-5 bor">
+    <div class="row">
+      <div *ngFor="let film of filmovi" class="col-md-3">
+        <div class="card mb-4">
+          <img src="{{ film.slika }} " class="card-img-top max-height" alt="{{ film.ime }}">
+          <div class="card-body">
+            <h5 class="card-title tex">{{ film.ime }}</h5>
+            <p class="card-text"><strong>Zanr:</strong> {{ film.zanar }}</p>
+            <p class="card-text"><strong>Godina objavljivanja:</strong> {{ film.godinaObjavljivanja }}</p>
+            <a [routerLink]="['/film', film.id]" class="btn btn-primary">Detaljnije o Filmu</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  

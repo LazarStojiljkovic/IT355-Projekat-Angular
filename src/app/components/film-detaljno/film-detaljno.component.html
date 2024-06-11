@@ -1,0 +1,68 @@
+<div *ngIf="film" class="container mt-3">
+      <div class="row">
+        <div class="col-md-6">
+          <img [src]="film.slika" class="img-thumbnail max-height" alt="{{ film.ime }}">
+        </div>
+        <div class="col-md-6">
+          <ul class="list-group">
+            <li class="list-group-item"><strong>Ime:</strong> {{ film.ime }}</li>
+            <li class="list-group-item"><strong>Zanr:</strong> {{ film.zanar }}</li>
+            <li class="list-group-item"><strong>Godina objavljivanja:</strong> {{ film.godinaObjavljivanja }}</li>
+            <li class="list-group-item"><strong>Trajanje:</strong> {{ film.trajanje }}m</li>
+            <li class="list-group-item"><strong>Direktor:</strong> {{ film.direktor.ime }} {{ film.direktor.prezime }}</li>
+            <li class="list-group-item">
+              <strong>Glumci:</strong>
+              <ul class="list-group">
+                <li class="list-group-item" *ngFor="let glumac of film.glumci">{{ glumac.ime }} {{ glumac.prezime }}</li>
+              </ul>
+            </li>
+            <li class="list-group-item"><strong>Prosecna Ocena:</strong> {{ prosecnaOcena() }}</li>
+          </ul>
+          <ng-container *ngIf="admin">
+            <button class="btn btn-primary m-1 mt-3" (click)="toggleEdit()">Promeni Sliku</button>
+            <button class="btn btn-danger m-1 mt-3" (click)="deleteFilm()">Obrisi Film</button>
+          </ng-container>
+          <button *ngIf="isLoggedIn && !hasReviewed" (click)="dodajUListaGledanja()" class="btn btn-primary m-1 mt-3">Dodaj u listu gledanja</button>
+          <div *ngIf="isEditing" class="mt-5">
+            <h2>Promeni Sliku</h2>
+            <form [formGroup]="editFilmForm" (ngSubmit)="onEditSubmit()">
+              <div class="form-group">
+                <label for="slika">Slika</label>
+                <input id="slika" formControlName="slika" class="form-control" type="text">
+              </div>
+              <button class="btn btn-success mt-3" type="submit">Promeni sliku</button>
+              <button class="btn btn-secondary mt-3" type="button" (click)="toggleEdit()">Otkazi</button>
+            </form>
+          </div>
+          <div *ngIf="isLoggedIn && !hasReviewed" class="mt-5">
+            <h2>Dodaj Recenziju</h2>
+            <form [formGroup]="recenzijaForm" (ngSubmit)="onRecenzijaSubmit()">
+              <div class="form-group">
+                <label for="tekst">Tekst</label>
+                <textarea id="tekst" formControlName="tekst" class="form-control"></textarea>
+              </div>
+              <div class="form-group">
+                <label for="ocena">Ocena</label>
+                <input id="ocena" formControlName="ocena" class="form-control" type="number" min="1" max="10">
+              </div>
+              <button class="btn btn-success mt-3" type="submit">Dodaj Recenziju</button>
+            </form>
+          </div>
+        </div>
+      </div>
+      <div *ngIf="recenzije.length > 0" class="mt-5">
+        <h2>Recenzije</h2>
+        <div *ngFor="let recenzija of recenzije" class="card mt-3">
+          <div class="card-body d-flex justify-content-between align-items-center">
+            <div>
+              <h5 class="card-title">{{ recenzija.korisnik.ime }}</h5>
+              <p class="card-text">{{ recenzija.tekst }}</p>
+              <p class="card-text"><strong>Ocena:</strong> {{ recenzija.ocena }}</p>
+            </div>
+            <button *ngIf="moguceBrisanje(recenzija)" class="btn btn-danger" (click)="deleteRecenzija(recenzija.id)">Obrisi Recenziju</button>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+

@@ -1,0 +1,12 @@
+.table {
+    margin-bottom: 30px;
+}
+
+.card-header {
+    background-color: #007bff;
+    color: white;
+}
+
+.card-body {
+    padding: 20px;
+}

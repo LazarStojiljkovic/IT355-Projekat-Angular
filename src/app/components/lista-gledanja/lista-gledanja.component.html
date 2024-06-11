@@ -1,0 +1,31 @@
+<div class="container mt-4">
+  <h2 class="text-center m-3">Lista Gledanja</h2>
+  <div class="film-lista">
+    <div class="film-item card mb-3" *ngFor="let film of listaGledanjaFilm">
+      <div class="row no-gutters">
+        <div class="col-md-4">
+          <img [src]="film.film.slika" alt="{{ film.film.ime }}" class="img-fluid rounded-start film-image">
+        </div>
+        <div class="col-md-8">
+          <div class="card-body">
+            <div class="d-flex justify-content-between">
+              <h5 class="card-title">{{ film.film.ime }}</h5>
+              <button class="btn btn-danger btn-sm" (click)="deleteListaGledanjaFilm(film.id)">Obriši</button>
+            </div>
+            <p class="card-text"><strong>Žanr:</strong> {{ film.film.zanar }}</p>
+            <p class="card-text"><strong>Trajanje:</strong> {{ film.film.trajanje }}m</p>
+            <p class="card-text"><strong>Datum Dodavanja:</strong> {{ film.datumDodavanja }}</p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div *ngIf="listaGledanjaFilm.length === 0" class="text-center m-3">
+      <p>Trenutno nema filmova u listi gledanja</p>
+    </div>
+  </div>
+  <div class="m-3 text-center" *ngIf="listaGledanjaFilm.length > 0">
+    <button class="btn btn-danger" (click)="deleteAllListaGledanjaFilm()">Obriši Sve</button>
+  </div>
+</div>
+
+

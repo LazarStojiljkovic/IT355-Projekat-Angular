@@ -1,0 +1,40 @@
+<div class="container mt-3">
+    <h2>Dodaj novog Glumca</h2>
+    <form [formGroup]="createGlumacForm" (ngSubmit)="onSubmitCreateGlumac()">
+        <div class="form-group">
+            <label for="ime">Ime</label>
+            <input id="ime" formControlName="ime" class="form-control" type="text">
+        </div>
+        <div class="form-group">
+            <label for="prezime">Prezime</label>
+            <input id="prezime" formControlName="prezime" class="form-control" type="text">
+        </div>
+        <div class="form-group">
+            <label for="biografija">Biografija</label>
+            <textarea id="biografija" formControlName="biografija" class="form-control"></textarea>
+        </div>
+        <br>
+        <button class="btn btn-primary" type="submit">Dodaj Glumca</button>
+    </form>
+<div class="mt-3">
+    <h2 class="">Dodaj Glumca u Film</h2>
+    <div class="form-group">
+    <label for="film m-2">Film</label>
+    <select id="film" class="form-control" (change)="onFilmSelect($event)">
+        <option value="" disabled selected>Izaberite film</option>
+        <option *ngFor="let film of films" [value]="film.id">{{ film.ime }} </option>
+    </select>
+    </div>
+</div>
+    
+    <div *ngIf="selectedFilm">
+        <h3>Lista Glumaca</h3>
+        <ul class="list-group">
+            <li *ngFor="let glumac of availableGlumci" class="list-group-item d-flex justify-content-between align-items-center">
+                {{ glumac.ime }} {{ glumac.prezime }}
+                <button class="btn btn-primary btn-sm" (click)="addGlumacToFilm(glumac)">Dodaj u Film</button>
+            </li>
+        </ul>
+    </div>
+</div>
+

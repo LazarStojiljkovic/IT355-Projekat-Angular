@@ -1,0 +1,37 @@
+ <div class="container mt-5">
+    <div class="row justify-content-center">
+      <div class="col-md-6">
+        <div class="card">
+          <div class="card-body">
+            <h2 class="card-title text-center mb-4">Registracija</h2>
+            <form (ngSubmit)="regiForma()">
+              <div class="form-group">
+                <label for="email">Email:</label>
+                <input type="email" id="email" [(ngModel)]="korisnik.email" name="email" class="form-control" required>
+                <div *ngIf="emailError" class="alert alert-danger mt-2">{{ emailError }}</div>
+              </div>
+              <div class="form-group">
+                <label for="ime">Ime:</label>
+                <input type="text" id="ime" [(ngModel)]="korisnik.ime" name="ime" class="form-control" required>
+                <div *ngIf="imeError" class="alert alert-danger mt-2">{{ imeError }}</div>
+              </div>
+              <div class="form-group">
+                <label for="sifra">Sifra:</label>
+                <input type="password" id="sifra" [(ngModel)]="korisnik.sifra" name="sifra" class="form-control" required>
+                <div *ngIf="sifraError" class="alert alert-danger mt-2">{{ sifraError }}</div>
+              </div>
+              <div class="form-group">
+                <label for="potvrdiSifru">Potvrdi sifru:</label>
+                <input type="password" id="potvrdiSifru" [(ngModel)]="potvrdiSifru" name="potvrdiSifru" class="form-control" required>
+                <div *ngIf="potvrdiSifruError" class="alert alert-danger mt-2">{{ potvrdiSifruError }}</div>
+              </div>
+              <button type="submit" class="btn btn-primary btn-block m-3">Registruj se</button>
+              <button type="button" class="btn btn-secondary btn-block" routerLink="/login">Prijava</button>
+              <div *ngIf="errorMessage" class="alert alert-danger mt-3">{{ errorMessage }}</div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  

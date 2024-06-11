@@ -1,0 +1,37 @@
+<nav class="navbar navbar-expand-lg navbar-light bg-light ">
+    <a class="navbar-brand m-2" routerLink="/pocetna">Filmovi</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse justify-content-between" id="navbarNav">
+      <ul class="navbar-nav">
+        <li class="nav-item" *ngIf="isLoggedIn">
+          <a class="nav-link" routerLink="/pocetna">Pocetna</a>
+        </li>
+        <li class="nav-item" *ngIf="isLoggedIn">
+          <a class="nav-link" routerLink="/lista-gledanja">Lista Gledanja</a>
+        </li>
+        <li class="nav-item" *ngIf="admin">
+          <a class="nav-link" routerLink="/admin-film">Dodaj Film</a>
+        </li>
+        <li class="nav-item" *ngIf="admin">
+          <a class="nav-link" routerLink="/admin-glumac">Dodaj Glumca</a>
+        </li>
+        <li class="nav-item" *ngIf="admin">
+          <a class="nav-link" routerLink="/admin-korisnik">Korisnici</a>
+        </li>
+      </ul>
+      <ul class="navbar-nav">
+        <li class="nav-item" *ngIf="isLoggedIn">
+          <a routerLink="/profil" class="nav-link"><strong>{{ ime }}</strong></a>
+        </li>
+        <li class="nav-item" *ngIf="isLoggedIn">
+          <a class="nav-link" (click)="odjava()">Odjavi se</a>
+        </li>
+        <li class="nav-item" *ngIf="!isLoggedIn">
+          <a class="nav-link" routerLink="/login">Prijavi se</a>
+        </li>
+      </ul>
+    </div>
+  </nav>
+  

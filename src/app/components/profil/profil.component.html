@@ -1,0 +1,35 @@
+<div class="container mt-5">
+    <div class="card">
+        <div class="card-header">
+            <h2>Profil</h2>
+        </div>
+        <div class="card-body">
+            <form (ngSubmit)="onSubmit()" *ngIf="korisnik">
+                <ul class="list-group list-group-flush">
+                    <li class="list-group-item">
+                        <strong>Ime:</strong> {{ korisnik.ime }}
+                    </li>
+                    <li class="list-group-item">
+                        <strong>Email:</strong> {{ korisnik.email }}
+                    </li>
+                    <li class="list-group-item">
+                        <div class="form-group">
+                            <label for="novaSifra">Nova Sifra:</label>
+                            <input type="password" class="form-control" id="novaSifra" [(ngModel)]="novaSifra" name="novaSifra" placeholder="" required>
+                        </div>
+                    </li>
+                    <li class="list-group-item">
+                        <div class="form-group">
+                            <label for="potvrdiSifru">Potvrdi Sifru:</label>
+                            <input type="password" class="form-control" id="potvrdiSifru" [(ngModel)]="potvrdiSifru" name="potvrdiSifru" required>
+                        </div>
+                    </li>
+                </ul>
+                <button type="submit" class="btn btn-primary mt-3">Promeni Šifru</button>
+                <div *ngIf="successMessage" class="alert alert-success mt-3">{{ successMessage }}</div>
+                <div *ngIf="errorMessage" class="alert alert-danger mt-3">{{ errorMessage }}</div>
+            </form>
+        </div>
+    </div>
+  </div>
+  
